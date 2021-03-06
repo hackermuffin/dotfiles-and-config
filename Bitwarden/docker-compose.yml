@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  bitwarden:
+    container_name: bitwarden
+    image: bitwardenrs/server
+    restart: unless-stopped
+    volumes:
+      - bw-data:/data
+    environment:
+      WEBSOCKET_ENABLED: 'true' # Required to use websockets
+      SIGNUPS_ALLOWED: 'true'   # set to false to disable signups
+    networks:
+      bitwarden_net:
+
+  caddy:
+    container_name: caddy
+    image: caddy
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      DOMAIN: <bitwarden-domain>
+      EMAIL: <email-for-cloudflare>
+    networks:
+      bitwarden_net:
+
+volumes:
+  caddy_data:
+  caddy_config:
+  bw_data:
+
+networks:
+  bitwarden_net:
