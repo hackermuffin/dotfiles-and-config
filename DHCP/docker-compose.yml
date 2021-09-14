@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  alpine-test:
+    build: .
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./dnsmasq.conf:/etc/dnsmasq.conf
+      - ./sysctl.conf:/etc/sysctl.conf
+    network_mode: host
