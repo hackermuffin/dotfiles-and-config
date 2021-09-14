@@ -1,0 +1,15 @@
+services:
+  server:
+    build: .
+    stdin_open: true          # add stdin and tty to allow docker attach
+    tty: true
+    ports:                    # server port needs to be accessible from clients
+      - 8080:8080
+
+  client:
+    image: caddy
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./Cigar2/web:/web
+    ports:
+      - 80:80

@@ -1,0 +1,3 @@
+[submodule "Agar/Cigar2"]
+	path = Agar/Cigar2
+	url = https://github.com/Cigar2/Cigar2.git
