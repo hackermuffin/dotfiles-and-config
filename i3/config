@@ -303,6 +303,6 @@ for_window [class="comp1140.ass2.gui.Viewer"] floating enable
 for_window [class="comp1140.lab6.Board"] floating enable
 
 # Config to not destry people's ears
-bindsym $mod+F12 exec pactl set-source-volume 5 20%
+bindsym $mod+F12 exec pactl set-source-volume alsa_input.pci-0000_00_1f.3.analog-stereo 20%
 
 
