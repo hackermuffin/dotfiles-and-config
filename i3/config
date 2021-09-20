@@ -290,7 +290,7 @@ for_window [class="Xfburn"] floating enable
 ###############################################################################
 
 # Set wallpaper
-feh --bg-scale ~/Wallpapers/red-blue-planet.jpg
+feh --bg-scale --randomize ~/Wallpapers/*
 
 # Taskbar icons
 exec --no-startup-id pasystray
