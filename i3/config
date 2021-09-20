@@ -293,6 +293,7 @@ for_window [class="Xfburn"] floating enable
 # Taskbar icons
 exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 
 # Monitor setup
 set $monitor_left HDMI-1
