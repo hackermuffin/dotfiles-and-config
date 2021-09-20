@@ -28,7 +28,3 @@ done
 #rclone copy ~/NextCloud/Peter   nextcloud:Peter
 
 
-#rclone copy ~/.local/share/wesnoth nextcloud:HomeBackup/.local/share/wesnoth
-#rclone copy ~/.local/share/Terraria nextcloud:HomeBackup/.local/share/Terraria
-#rclone copy ~/.local/share/dolphin-emu nextcloud:HomeBackup/.local/share/dolphin-emu
-
