@@ -1,0 +1,1 @@
+1 0 * * * sqlite3 /home/peter/bw-data/db.sqlite3 ".backup '/home/peter/bw-data/db-backup/backup-$(date '+\%F').sqlite3'"; rclone copy /home/peter/bw-data/db-backup/ drive:bitwarden-backup
