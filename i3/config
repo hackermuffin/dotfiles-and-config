@@ -290,12 +290,14 @@ for_window [class="Xfburn"] floating enable
 ###############################################################################
 
 # Set wallpaper
-feh --bg-scale --randomize ~/Wallpapers/*
+exec --no-startup-id feh --bg-scale --randomize ~/Wallpapers/*
 
 # Taskbar icons
 exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
+exec --no-startup-id kdeconnect-indicator
+
 
 # Monitor setup
 set $monitor_left HDMI-1
