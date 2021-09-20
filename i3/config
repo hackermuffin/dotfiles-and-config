@@ -295,8 +295,20 @@ exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
 
 # Monitor setup
-bindsym $mod+Home exec xrandr --output eDP-1 --primary --output HDMI-1 --auto --left-of eDP-1
-bindsym $mod+End  exec xrandr --output HDMI-1 --off
+set $monitor_left HDMI-1
+set $monitor_right eDP-1
+bindsym $mod+Home exec xrandr --output $monitor_right --primary --output $monitor_left --auto --left-of $monitor_right
+bindsym $mod+End  exec xrandr --output $monitor_left  --off
+workspace $ws1 output $monitor_left
+workspace $ws2 output $monitor_left
+workspace $ws3 output $monitor_left
+workspace $ws4 output $monitor_left
+workspace $ws5 output $monitor_left
+workspace $ws6 output $monitor_right
+workspace $ws7 output $monitor_right
+workspace $ws8 output $monitor_right
+workspace $ws9 output $monitor_right
+workspace $ws10 output $monitor_right
 
 # Config to handle specific javafx programs as floating
 for_window [class="comp1140.ass2.gui.Viewer"] floating enable
