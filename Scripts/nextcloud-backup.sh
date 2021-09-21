@@ -4,7 +4,7 @@
 rclone_filtered='rclone copy --exclude */.git/*'
 
 # Backup my directory
-$rclone_filtered --dry-run ~/NextCloud/Peter   nextcloud:Peter
+$rclone_filtered ~/NextCloud/Peter   nextcloud:Peter
 
 # Other home folders to backup
 home_folders_to_backup=(\
@@ -12,6 +12,7 @@ home_folders_to_backup=(\
 	"Pictures" \
 	".local/share/dolphin-emu" \
 	".local/share/DustAET" \
+	".local/share/multimc" \
 	".local/share/Terraria" \
 	".local/share/wesnoth" \
 )
@@ -23,7 +24,7 @@ remote_path=nextcloud:HomeBackup
 for folder in ${home_folders_to_backup[@]}
 do
   echo "Backing up ~/$folder to $remote_path/$folder ..."
-  $rclone_filtered --dry-run ~/$folder $remote_path/$folder
+  $rclone_filtered ~/$folder $remote_path/$folder
   echo "Backup of ~/$folder to $remote_path/$folder complete"
   echo
 done
