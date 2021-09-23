@@ -302,8 +302,8 @@ exec --no-startup-id kdeconnect-indicator
 # Monitor setup
 set $monitor_left HDMI-1
 set $monitor_right eDP-1
-bindsym $mod+Home exec xrandr --output $monitor_right --primary --output $monitor_left --auto --left-of $monitor_right
-bindsym $mod+End  exec xrandr --output $monitor_left  --off
+bindsym $mod+Home exec --no-startup-id xrandr --output $monitor_right --primary --output $monitor_left --auto --left-of $monitor_right
+bindsym $mod+End  exec --no-startup-id xrandr --output $monitor_left  --off
 workspace $ws1 output $monitor_left
 workspace $ws2 output $monitor_left
 workspace $ws3 output $monitor_left
