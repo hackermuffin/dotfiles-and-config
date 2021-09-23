@@ -7,7 +7,7 @@ This readme is a WIP list of steps to setup my i3 setup
 System updates
 Update grub
 ```bash
-sudo pacman -Syu yay i3 i3exit vim dmenu ranger discord pasystray wireguard-tools network-manager-applet rxvt-unicode base-devel libreoffice feh kdeconnect
+sudo pacman -Syu yay i3 i3exit vim dmenu ranger discord pasystray wireguard-tools network-manager-applet rxvt-unicode base-devel libreoffice feh kdeconnect scrot
 # dmenu-manjaro manjaro-zsh-config bluez bluez-utils blueman
 yay -Syu visual-studio-code-bin
 ```
