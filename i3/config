@@ -24,7 +24,7 @@ font pango:monospace 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -300,10 +300,10 @@ exec --no-startup-id kdeconnect-indicator
 
 
 # Monitor setup
-set $monitor_left HDMI-1
-set $monitor_right eDP-1
-bindsym $mod+Home exec --no-startup-id xrandr --output $monitor_right --primary --output $monitor_left --auto --left-of $monitor_right
-bindsym $mod+End  exec --no-startup-id xrandr --output $monitor_left  --off
+set $monitor_left eDP-1
+set $monitor_right HDMI-1
+bindsym $mod+Home exec --no-startup-id xrandr --output $monitor_right --primary --auto --output $monitor_left --auto --left-of $monitor_right
+bindsym $mod+End  exec --no-startup-id xrandr --output $monitor_right  --off
 workspace $ws1 output $monitor_left
 workspace $ws2 output $monitor_left
 workspace $ws3 output $monitor_left
