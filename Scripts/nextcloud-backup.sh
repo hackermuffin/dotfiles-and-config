@@ -4,7 +4,7 @@
 rclone_filtered='rclone copy --exclude */.git/*'
 
 # Backup my directory
-$rclone_filtered ~/NextCloud/Peter   nextcloud:Peter
+$rclone_filtered "/media/Personal Data/Peter" nextcloud:Peter
 
 # Other home folders to backup
 home_folders_to_backup=(\
