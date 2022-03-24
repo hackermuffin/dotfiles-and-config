@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set up filters on rclone command
-rclone_filtered='rclone copy --exclude */.git/*'
+rclone_filtered='rclone sync --exclude */.git/*'
 
 # Backup my directory
 $rclone_filtered "/media/Personal Data/Peter" nextcloud:Peter
@@ -9,15 +9,11 @@ $rclone_filtered "/media/Personal Data/Peter" nextcloud:Peter
 # Other home folders to backup
 home_folders_to_backup=(\
 	"Zotero" \
-	"Pictures" \
-	".local/share/dolphin-emu" \
-	".local/share/DustAET" \
-	".local/share/multimc" \
-	".local/share/Terraria" \
-	".local/share/wesnoth" \
+#	"Pictures" \
 )
 
 # RClone remote path to store backups
+rclone_filtered='rclone copy --exclude */.git/*'
 remote_path=nextcloud:HomeBackup
 
 # Backup all folders
