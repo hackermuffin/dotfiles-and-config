@@ -1,0 +1,44 @@
+- name: Setup dependancies
+  hosts: all
+  tasks:
+    - name: Install python/pip
+      become: yes
+      become_method: sudo
+      apt:
+        update_cache: yes
+        pkg:
+          - python3
+          - python3-pip
+    - name: Leave any existing swarms
+      docker_swarm:
+        state: absent
+        force: yes
+
+- name: Initialise swarm
+  hosts: managers
+  tasks:
+    - name: Create swarm
+      docker_swarm:
+        state: present
+        force: yes
+      run_once: true
+    - name: Get manager join token
+      shell: docker swarm join-token --quiet manager
+      register: manager_token
+    - name: Get worker join token
+      shell: docker swarm join-token --quiet worker
+      register: worker_token
+
+- name: Add workers to the swarm
+  hosts: workers
+  tasks:
+    - name: Add workers
+      docker_swarm:
+        state: join
+        advertise_addr: "{{ ansible_host }}"
+        join_token: "{{ hostvars['ubuntu01']['worker_token']['stdout'] }}"
+        remote_addrs: [ "{{ hostvars['ubuntu01']['ansible_default_ipv4']['address'] }}:2377" ]
+
+
+
+

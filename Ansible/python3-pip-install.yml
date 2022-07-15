@@ -1,0 +1,11 @@
+- name: Python3 and Pip install
+  hosts: all
+  tasks:
+    - name: Install packages
+      become: yes
+      become_method: sudo
+      apt:
+        update_cache: yes
+        pkg:
+          - python3
+          - python3-pip

@@ -1,0 +1,93 @@
+- name: Docker setup
+  hosts: all
+  tasks:
+    - name: Remove old versions of docker
+      become: yes
+      become_method: sudo
+      apt:
+        state: absent
+        pkg:
+          - docker
+          - docker-engine
+          - docker.io
+          - containerd
+          - runc
+    - name: Update system
+      become: yes
+      become_method: sudo
+      apt:
+        update_cache: true
+        upgrade: dist
+        cache_valid_time: 3600
+    - name: Install dependancies
+      become: yes
+      become_method: sudo
+      apt:
+        pkg:
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+
+- name: Docker Setup - Ubuntu
+  hosts: ubuntu
+  tasks:
+    - name: Add docker GPG key
+      become: yes
+      become_method: sudo
+      shell: "{{ item }}"
+      with_items:
+        - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --yes --dearmor -o /etc/apt/keyrings/docker.gpg
+    - name: Set up repo
+      become: yes
+      become_method: sudo
+      shell: "{{ item }}"
+      with_items:
+        -  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+- name: Docker Setup - Debian
+  hosts: raspi
+  tasks:
+    - name: Add docker GPG key
+      become: yes
+      become_method: sudo
+      shell: "{{ item }}"
+      with_items:
+        - sudo mkdir -p /etc/apt/keyrings
+        - curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --yes --dearmor -o /etc/apt/keyrings/docker.gpg 
+    - name: Set up repo
+      become: yes
+      become_method: sudo
+      shell: "{{ item }}"
+      with_items:
+        - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+
+
+- name: Docker installation
+  hosts: all
+  tasks:
+    - name: Install packages
+      become: yes
+      become_method: sudo
+      apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+    - name: Add user to docker group
+      become: yes
+      become_method: sudo
+      user:
+        name: "{{ ansible_user_id }}"
+        groups: docker
+        append: yes
+    - name: Start docker daemon
+      become: yes
+      become_method: sudo
+      systemd:
+        name: docker
+        enabled: yes
+
+
