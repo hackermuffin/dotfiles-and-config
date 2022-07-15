@@ -290,7 +290,8 @@ for_window [class="Xfburn"] floating enable
 ###############################################################################
 
 # Set wallpaper
-exec --no-startup-id feh --bg-scale --randomize ~/Wallpapers/*
+exec --no-startup-id xrandr --output $monitor_right --primary --auto --output $monitor_left --auto --left-of $monitor_right
+exec --no-startup-id feh --bg-fill --randomize ~/Wallpapers/*
 
 # Taskbar icons
 exec --no-startup-id pasystray
@@ -300,10 +301,8 @@ exec --no-startup-id kdeconnect-indicator
 
 
 # Monitor setup
-set $monitor_left eDP-1
-set $monitor_right HDMI-1
-bindsym $mod+Home exec --no-startup-id xrandr --output $monitor_right --primary --auto --output $monitor_left --auto --left-of $monitor_right
-bindsym $mod+End  exec --no-startup-id xrandr --output $monitor_right  --off
+set $monitor_left HDMI-A-4
+set $monitor_right DisplayPort-3
 workspace $ws1 output $monitor_left
 workspace $ws2 output $monitor_left
 workspace $ws3 output $monitor_left
